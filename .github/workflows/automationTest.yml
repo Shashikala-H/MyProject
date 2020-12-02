@@ -1,0 +1,29 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: TestMyProject
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: installation
+        run: npm install --save-dev cypress-cucumber-preprocessor
+        
+      - name: installation2
+        run: npm install
+        
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm test
