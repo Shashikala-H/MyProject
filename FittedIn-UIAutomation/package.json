@@ -1,0 +1,35 @@
+{
+  "name": "FittedIn-UIAutomation",
+  "version": "1.0.0",
+  "description": "An example for Cypress and Cucumber usage",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open:local": "CYPRESS_ENV=localhost npm run cypress:open",
+    "cypress:open:prod": "CYPRESS_ENV=production npm run cypress:open",
+    "cypress:open": "cypress open",
+    "test:local": "CYPRESS_ENV=localhost npm run test",
+    "test:prod": "CYPRESS_ENV=production npm run test",
+    "test": "cypress run --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
+    "test:debug:local": "CYPRESS_ENV=localhost npm run test:debug",
+    "test:debug:prod": "CYPRESS_ENV=production npm run test:debug",
+    "test:debug": "cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "step_definitions": "cypress/integration/UITest/"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "cypress": "^5.6.0",
+    "cypress-cucumber-preprocessor": "2.3.1",
+    "cypress-waitfor": "^1.1.0"
+  },
+  "devDependencies": {
+    "cypress-iframe": "^1.0.1"
+  }
+}

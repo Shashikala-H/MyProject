@@ -1,0 +1,17 @@
+{
+  "baseUrl": "https://shoeshoprunning.fittedrunning.com/",
+  "ignoreTestFiles": ["*.js", "*.md"],
+  "reporter": "junit",
+  "viewportHeight": 800,
+  "viewportWidth": 1200,
+  "reporterOptions": {
+    "mochaFile": "test-results/test-output-[hash].xml"
+  },
+
+  "chromeWebSecurity": false,
+  "env": {
+    "host": "https://arunnersmind.com/shop/",
+    "runnersMindFittedRunning": "https://arunnersmind.fittedrunning.com/login/"
+  }
+  
+}
