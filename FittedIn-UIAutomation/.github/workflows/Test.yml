@@ -4,10 +4,10 @@
 name: Test My Project
 
 on:
+   workflow_dispatch:
   push:
-    branches: [ main ]
   pull_request:
-    branches: [ main ]
+    types: [opened, edited]
 
 jobs:
   build:
