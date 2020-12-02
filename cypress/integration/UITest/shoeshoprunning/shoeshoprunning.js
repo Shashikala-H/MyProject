@@ -60,11 +60,6 @@ And(/^Click proceed to checkout button$/, () => {
   shoeshoprunning.proceedToCheckout();
 });
 
-And(/^Enter the customer details$/, () =>
-{
-  shoeshoprunning.firstName();
-});
-
 And(/^Enter the first Name$/, () => {
   shoeshoprunning.firstName();
 });
