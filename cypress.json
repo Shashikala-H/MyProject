@@ -1,17 +1,29 @@
 {
   "baseUrl": "https://shoeshoprunning.fittedrunning.com/",
-  "ignoreTestFiles": ["*.js", "*.md"],
-  "reporter": "junit",
+  "ignoreTestFiles": [
+    "*.js",
+    "*.md"
+  ],
   "viewportHeight": 800,
   "viewportWidth": 1200,
-  "reporterOptions": {
-    "mochaFile": "test-results/test-output-[hash].xml"
-  },
+  "defaultCommandTimeout": 10000,
+  "requestTimeout": 10000,
+  "pageLoadTimeOut": 10000,
+  "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    },
 
   "chromeWebSecurity": false,
   "env": {
     "host": "https://arunnersmind.com/shop/",
     "runnersMindFittedRunning": "https://arunnersmind.fittedrunning.com/login/"
-  }
-  
+  },
+  "projectId": "c6gf62"
 }
