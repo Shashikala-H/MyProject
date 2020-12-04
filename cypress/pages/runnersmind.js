@@ -1,76 +1,60 @@
 const frame = "#fci-container > iframe";
 const shipToMeRadioButton = "#method-ship";
 const addToCart = ".woocommerce-variation-add-to-cart-enabled > button";
-const shoppingCart = "#wrapper > div > div > div > span";
 const continueShopping =
   "#wrapper > div > div > div > div > a:nth-child(1) > span";
-
 const shoppingCart_Validation = "#wrapper > div > div > div > span";
-const spexcolorvarient = "#attr_img_talk-birdie-to-me";
+const spexcolorvarient = "#attr_img_total-lime-piece";
 const viewcart = "#wrapper > div > div > div > div > a:nth-child(3)";
 const viewcart_Validation = "tbody > tr.cart-subtotal > td > span";
+const waitForPageLoad = 8000;
 
 class runnersmind {
 
   static shipToMeRadioButton() {
+    cy.wait(waitForPageLoad)
     cy.iframe(frame)
       .find(shipToMeRadioButton, { timeout: 15000 })
       .check({ force: true })
-      .should("be.checked");
-      
-    cy.wait(5000);
+      .should("be.checked"); 
+      cy.wait(waitForPageLoad)
   }
 
   static addToCart() {
+    cy.wait(waitForPageLoad)
     cy.iframe(frame).find(addToCart, { timeout: 15000 }).click();
-    cy.wait(5000);
-  }
-
-  static shoppingCart() {
-    cy.iframe(frame)
-      .find(shoppingCart, { timeout: 15000 })
-      .should(
-        "have.text",
-        "“Currex RunPro Dynamic Insoles” has been added to your cart."
-      );
+    
   }
 
   static continueShopping() {
+    cy.wait(waitForPageLoad)
     cy.iframe(frame).find(continueShopping, { timeout: 10000 }).click();
-    cy.wait(5000);
-  }
-
-  static shoppingCart_Validation() {
-    cy.iframe(frame)
-      .find(shoppingCart_Validation)
-      .should(
-        "have.text",
-        "“Nike Flex Stride Short 5″” has been added to your cart."
-      );
+    cy.frameLoaded(frame);
+    cy.wait(waitForPageLoad)
   }
 
   static spexcolorvarient() {
     cy.iframe(frame)
       .find(spexcolorvarient, { timeout: 5000 })
       .click({ force: true });
-    cy.wait(5000);
+      cy.wait(waitForPageLoad)
   }
 
-  static shopping_CartValidation() {
+  static verifyShoppingCart(Product) {
+    cy.wait(waitForPageLoad)
     cy.iframe(frame)
       .find(shoppingCart_Validation)
-      .should(
-        "have.text",
-        "“goodr Runway Sunglasses” has been added to your cart."
-      );
+      .contains("“"+Product+"” has been added to your cart.");
   }
 
   static viewcart() {
     cy.iframe(frame).find(viewcart, { timeout: 5000 }).click();
-    cy.wait(5000);
+    cy.wait(waitForPageLoad)
   }
+
   static viewcartValidation() {
-    cy.iframe(frame).find(viewcart_Validation).should("have.text", "$130.00");
+    cy.wait(waitForPageLoad)
+    cy.iframe(frame).find(viewcart_Validation).should("have.text", "$260.00");
   }
 }
 

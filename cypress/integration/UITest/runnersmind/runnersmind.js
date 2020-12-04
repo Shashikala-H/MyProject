@@ -1,4 +1,5 @@
 import { Given, And, Then, When } from "cypress-cucumber-preprocessor/steps";
+import homePage_runnersmind from "../../../pages/homePage_runnersmind";
 import HomePage_arunnersmind from '../../../pages/homePage_runnersmind'
 import runnersmind from '../../../pages/runnersmind'
 
@@ -16,9 +17,9 @@ And(/^I Click Add to cart button$/, () => {
   runnersmind.addToCart();
 });
 
-Then(/^Check the product is in the Cart$/, () => {
-  runnersmind.shoppingCart();
-});
+// Then(/^Check the product is in the Cart$/, () => {
+//   runnersmind.shoppingCart();
+// });
 
 And(/^Click the continue Shopping$/, () => {
   runnersmind.continueShopping();
@@ -38,11 +39,8 @@ And(/^select the different Color varient and Check Ship to me option is Enabled$
 });
 
 When(/^I Click Add to cart button$/, () => {
+  runnersmind.shipToMeRadioButton();
   runnersmind.addToCart();
-});
-
-Then(/^Check the product in the Cart$/, () => {
-  runnersmind.shoppingCart_Validation();
 });
 
 And(/^Click the continue Shopping$/, () => {
@@ -59,18 +57,22 @@ When(/^I click the third product$/, () => {
 
 And(/^select the different color varient and Check Ship to me option is Enabled$/, () => {
   runnersmind.spexcolorvarient();
-  runnersmind.shipToMeRadioButton();
 });
 
-When(/^I Click Add to cart button$/, () => {
-  runnersmind.addToCart();
+Then('Check the {string} is in the Cart', (Product) => {
+  runnersmind.verifyShoppingCart(Product);
 });
 
-Then(/^Check the Product is in the Cart$/, () => {
-  runnersmind.shopping_CartValidation();
+And(/^Select Multiple filters$/, () => {
+   homePage_runnersmind.selectCategories();
+   homePage_runnersmind.selectBrand();
 });
 
-And(/^Click the viewcart button and validate the price$/, () => {
+And(/^Select the fourth product$/, () => {
+   homePage_runnersmind.fourthProduct();
+});
+
+Then(/^Click the viewcart button and validate the price$/, () => {
   runnersmind.viewcart();
   runnersmind.viewcartValidation();
 });

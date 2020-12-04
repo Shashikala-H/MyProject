@@ -1,10 +1,5 @@
 import { And, Then, When } from "cypress-cucumber-preprocessor/steps";
-import HomePage from '../../../../pages/runnersMindFittedRunning/HomePage';
 import ProductsPage from '../../../../pages/runnersMindFittedRunning/ProductsPage';
-
-When(/^I click on the Products tab$/, () => {
-    HomePage.productsTab();
-});
 
 And('I search for {string} product', (searchText) => {
     ProductsPage.searchBox(searchText);

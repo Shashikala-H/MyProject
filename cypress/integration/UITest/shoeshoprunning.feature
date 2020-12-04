@@ -1,6 +1,6 @@
+ @e2e-test
 Feature: Checkout Feature
-  @e2e-test
-  Scenario: visit shoeshoprunning website
+  Background: visit shoeshoprunning website
     Given I'm at fittedsite
     When I select ship To me option
   Scenario: Add three Various product to the cart.

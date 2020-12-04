@@ -8,41 +8,64 @@ const frame = "#fci-container > iframe";
 const searchBar = "aside>div>form>div>input[id^=dgwt-wcas-search-input]";
 const filter = "label.prdctfltr_ft_accessories.pfw--has-childeren > span";
 const colorvarient1 = "#attr_img_nike-flex-stride-short-5-black-reflective-silv";
+const categoriesWomensShoes = ".prdctfltr_ft_womens-shoes";
+const brandAltra = ".prdctfltr_ft_altra";
+const waitForPageLoad = 8000;
 
 class homePage_runnersmind {
+
   static visit1() {
     cy.visit(Cypress.env("host"));
+    cy.wait(waitForPageLoad);
+    cy.url().should("include", Cypress.env("host"));
   }
 
   static productlink() {
     cy.iframe(frame).find(productlink,{timeout:15000}).click({ force: true }).should('be.visible') ;
-    cy.wait(5000)
+    cy.wait(waitForPageLoad)
   }
 
   static searchBar() {
-    cy.iframe(frame).find(searchBar).type("Nike Flex Stride Short 5{enter}");
-    cy.wait(4000)
+    cy.wait(3000);
+    cy.iframe(frame).find(searchBar,{timeout:15000}).type("Nike Flex Stride Short 5{enter}");
+    cy.wait(waitForPageLoad)
   }
 
   static secondProduct() {
     cy.iframe(frame).find(secondProduct,{timeout:15000}).click({ force: true });
-    cy.wait(5000)
+    cy.wait(waitForPageLoad)
   }
 
   static filter() {
+    cy.wait(waitForPageLoad)
     cy.iframe(frame).find(filter,{timeout:15000}).click();
   }
 
   static thirdProduct() {
     cy.iframe(frame).find(thirdProduct,{timeout:15000}).click({ force: true });
-    cy.wait(5000)
+    cy.wait(waitForPageLoad)
   }
 
   static colorvarient() {
     cy.iframe(frame).find(colorvarient1,{timeout:10000}).click({ force: true });
-    cy.wait(4000)
+    cy.wait(waitForPageLoad)
   }
 
-}
+  static selectCategories() {
+    cy.wait(waitForPageLoad)
+    cy.iframe(frame).find(categoriesWomensShoes,{timeout:15000}).click();
+  }
 
+  static selectBrand()
+  {
+    cy.wait(waitForPageLoad)
+    cy.iframe(frame).find(brandAltra,{timeout:15000}).click();
+  }
+
+  static fourthProduct()
+  {
+    cy.wait(waitForPageLoad)
+    cy.iframe(frame).contains("Altra Escalante 2.5").click();
+  }
+}
 export default homePage_runnersmind;
