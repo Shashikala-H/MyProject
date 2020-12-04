@@ -30,7 +30,7 @@ jobs:
       - name: Generate HTML report
         run: npm run generate:report
 
-        - name: post test results into one
+      - name: post test results into one
         run: npm run posttest
         
       - name: html test results into one
