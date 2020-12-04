@@ -1,0 +1,10 @@
+{
+    "firstName" : "Test",
+    "lastName"  : "Envelope",
+    "address"   : "299  Martha Ellen Drive",
+    "city"      : "NewYork",
+    "state"     : "Montana{enter}",
+    "zipcode"   : "59801",
+    "phoneNumber" : "9750357717",
+    "email"     : "test123@yahoo.com"
+}
