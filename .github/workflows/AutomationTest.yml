@@ -25,7 +25,7 @@ jobs:
         run: npm run html:report
 
       - name: Deploy report page
-      - uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: my-artifact
           path: cypress/reports
