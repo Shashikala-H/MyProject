@@ -1,8 +1,10 @@
 name: FittedUI-AutomatedTest
 on:
   workflow_dispatch:
- branches:
-      - main  # Set a branch name to trigger deployment
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   cypress-run:
