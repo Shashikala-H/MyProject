@@ -1,12 +1,19 @@
 {
   "baseUrl": "https://shoeshoprunning.fittedrunning.com/",
   "ignoreTestFiles": ["*.js", "*.md"],
-  "reporter": "junit",
   "viewportHeight": 800,
   "viewportWidth": 1200,
-  "reporterOptions": {
-    "mochaFile": "test-results/test-output-[hash].xml"
+  "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
   },
+
 
   "chromeWebSecurity": false,
   "env": {

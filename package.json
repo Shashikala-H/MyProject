@@ -4,6 +4,8 @@
   "description": "An example for Cypress and Cucumber usage",
   "main": "index.js",
   "scripts": {
+    "clean:reports": "rimraf cypress/reports && mkdirp cypress/reports/",
+    "pretest": "npm run clean:reports",
     "cypress:open:local": "CYPRESS_ENV=localhost npm run cypress:open",
     "cypress:open:prod": "CYPRESS_ENV=production npm run cypress:open",
     "cypress:open": "cypress open",
@@ -12,7 +14,12 @@
     "test": "cypress run --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
     "test:debug:local": "CYPRESS_ENV=localhost npm run test:debug",
     "test:debug:prod": "CYPRESS_ENV=production npm run test:debug",
-    "test:debug": "cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'"
+    "test:debug": "cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
+    "scripts": "cypress run",
+    "combine:report": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports.json",
+    "generate:report": "marge cypress/reports/mochareports.json --reportDir ./ --inline",
+    "posttest": "npm run combine:report && npm run generate:report",
+    "html:report": "npm run scripts || npm run posttest"
   },
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": false,
@@ -30,6 +37,13 @@
     "cypress-waitfor": "^1.1.0"
   },
   "devDependencies": {
-    "cypress-iframe": "^1.0.1"
+    "cypress-iframe": "^1.0.1",
+    "cypress-multi-reporters": "^1.4.0",
+    "mocha": "^8.2.1",
+    "mkdirp": "^1.0.4",
+    "mochawesome": "^6.2.1",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.1.0",
+    "rimraf": "^3.0.2"
   }
 }
