@@ -22,9 +22,7 @@ jobs:
         run: npm run pretest
         
       - name: html test results into one
-        uses: cypress-io/github-action@v2
-        with:
-          start: npm html:report
+        run: npm run html:report
 
       - name: Deploy report page
         uses: actions/upload-artifact@v2
